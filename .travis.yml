@@ -1,7 +1,6 @@
 sudo: false
 language: python
-python:
-- '2.7'
+python: 2.7
 matrix:
     include:
     - os: osx
@@ -11,6 +10,7 @@ matrix:
         - pip install -r requirements.txt
       env: PATH=$PATH:/usr/local/Cellar/llvm/3.9.1/bin/ LLVM_CONFIG=llvm-config
     - before_install: pip install -r optional_requirements.txt
+      python: 2.7
 addons:
     apt:
         sources: ['llvm-toolchain-precise-3.9', 'ubuntu-toolchain-r-test']
