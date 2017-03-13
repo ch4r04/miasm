@@ -47,6 +47,10 @@ def build_all():
 
     print 'building'
     build_ok = False
+    if sys.platform == 'darwin':
+        from distutils import sysconfig
+        vars = sysconfig.get_config_vars()
+        vars['LDSHARED'] = vars['LDSHARED'].replace('-bundle', '-dynamiclib')
     for name, ext_modules in [('all', ext_modules_all),
                               ('notcc', ext_modules_no_tcc)]:
         print 'build with', repr(name)
