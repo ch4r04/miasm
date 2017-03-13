@@ -7,6 +7,7 @@ matrix:
       language: generic
       install:
         - brew install gcc@5 tcc llvm
+        - pip install -r optional_requirements.txt
         - pip install -r requirements.txt
       env: PATH=/usr/local/opt/llvm/bin:$PATH LLVM_CONFIG=llvm-config
     - before_install: pip install -r optional_requirements.txt
