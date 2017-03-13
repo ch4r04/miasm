@@ -8,7 +8,7 @@ matrix:
       install:
         - brew install gcc@5 tcc llvm
         - pip install -r requirements.txt
-      env: PATH=$PATH:/usr/local/Cellar/llvm/3.9.1/bin/ LLVM_CONFIG=llvm-config
+      env: PATH=/usr/local/opt/llvm/bin:$PATH LLVM_CONFIG=llvm-config
     - before_install: pip install -r optional_requirements.txt
       python: 2.7
 addons:
