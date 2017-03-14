@@ -8,8 +8,6 @@ matrix:
       before_install:
         - brew install gcc@5 tcc llvm
         - echo /usr/local/opt/llvm/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/llvm.pth
-        - pip install -r optional_requirements.txt
-        - pip install -r requirements.txt
       env: PATH=/usr/local/opt/llvm/bin:$PATH LLVM_CONFIG=llvm-config LDFLAGS=-L/usr/local/opt/llvm/lib CPPFLAGS=-I/usr/local/opt/llvm/include
     - before_script: pip install -r optional_requirements.txt
 addons:
@@ -31,4 +29,5 @@ install:
 - git clone https://github.com/numba/llvmlite -b v0.16.0
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sed -i 's/-static-libstdc++ //' llvmlite/ffi/Makefile.linux; fi
 - pip install enum34 && CXX=g++-5 pip install llvmlite/
+- pip install -r requirements.txt
 script: pytest
