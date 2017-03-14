@@ -103,16 +103,6 @@ def build_all():
         print 'Etheir install TCC or use LLVM jitter'
         print '*'*80
         print
-    # we copy libraries from build dir to current miasm directory
-    build_base = None
-    if 'build' in s.command_options:
-        if 'build_base' in s.command_options['build']:
-            build_base = s.command_options['build']['build_base']
-    if build_base is None:
-        build_base = 'build'
-        plat_specifier = ".%s-%s" % (get_platform(), sys.version[0:3])
-        build_base = os.path.join('build', 'lib' + plat_specifier)
-        print build_base
 
 build_all()
 
