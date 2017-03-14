@@ -7,11 +7,11 @@ matrix:
       language: generic
       install:
         - brew install gcc@5 tcc llvm
+        - echo /usr/local/opt/llvm/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/llvm.pth
         - pip install -r optional_requirements.txt
         - pip install -r requirements.txt
-      env: PATH=/usr/local/opt/llvm/bin:$PATH LLVM_CONFIG=llvm-config
+      env: PATH=/usr/local/opt/llvm/bin:$PATH LLVM_CONFIG=llvm-config LDFLAGS=-L/usr/local/opt/llvm/lib CPPFLAGS=-I/usr/local/opt/llvm/include
     - before_install: pip install -r optional_requirements.txt
-      python: 2.7
 addons:
     apt:
         sources: ['llvm-toolchain-precise-3.9', 'ubuntu-toolchain-r-test']
