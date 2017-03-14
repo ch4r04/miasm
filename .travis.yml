@@ -5,13 +5,13 @@ matrix:
     include:
     - os: osx
       language: generic
-      install:
+      before_install:
         - brew install gcc@5 tcc llvm
         - echo /usr/local/opt/llvm/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/llvm.pth
         - pip install -r optional_requirements.txt
         - pip install -r requirements.txt
       env: PATH=/usr/local/opt/llvm/bin:$PATH LLVM_CONFIG=llvm-config LDFLAGS=-L/usr/local/opt/llvm/lib CPPFLAGS=-I/usr/local/opt/llvm/include
-    - before_install: pip install -r optional_requirements.txt
+    - before_script: pip install -r optional_requirements.txt
 addons:
     apt:
         sources: ['llvm-toolchain-precise-3.9', 'ubuntu-toolchain-r-test']
@@ -22,11 +22,11 @@ addons:
             - texinfo
             - texi2html
 env: LLVM_CONFIG=llvm-config-3.9
-before_script:
-# install tcc
+before_install:
 - git clone http://repo.or.cz/tinycc.git -b release_0_9_26 && cd tinycc
 - ./configure --disable-static --tccdir=./ --libdir=$(pwd) --includedir=$(pwd)
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make && ln -s libtcc.so.1.0 libtcc.so && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd); fi && cd ..
+- make && ln -s libtcc.so.1.0 libtcc.so && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd) && cd ..
+install:
 # use the system libdtc++ instead of statically linking it for llvmvite
 - git clone https://github.com/numba/llvmlite -b v0.16.0
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sed -i 's/-static-libstdc++ //' llvmlite/ffi/Makefile.linux; fi
