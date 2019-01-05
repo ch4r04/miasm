@@ -28,7 +28,7 @@ before_script:
 - "pip install enum34"
 - "pip install llvmlite"
 # install elfesteem
-- "git clone https://github.com/serpilliere/elfesteem elfesteem && cd elfesteem && python setup.py install && cd ..;"
+- pip install git+https://github.com/serpilliere/elfesteem@master#egg=elfesteem-0.1
 # install pyparsing
 - "pip install pyparsing"
 # install pycparser
