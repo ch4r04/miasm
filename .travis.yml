@@ -20,6 +20,6 @@ before_script:
 # turn deprecation warning into RuntimeError
 - "find . -name '*.py' | xargs sed -i 's/warnings\\.warn(/raise RuntimeError(/g'"
 # install
-- "python setup.py build build_ext -I$(pwd)/../virtualenv/include -L$(pwd)/../virtualenv/tinycc"
-- "python setup.py install"
+- python setup.py build build_ext
+- python setup.py install
 script: cd test && python test_all.py && git ls-files -o --exclude-standard
