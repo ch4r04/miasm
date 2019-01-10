@@ -18,10 +18,6 @@ before_script:
 # codespell
 - "pip install codespell && git ls-files | xargs codespell --ignore-words=.codespell_ignore 2>/dev/null"
 - "cd .."
-# make virtual env
-- python /usr/lib/python2.7/dist-packages/virtualenv.py virtualenv
-- cd virtualenv
-- source bin/activate
 # Miasm
 - "cd ..;"
 - "cd miasm;"
