@@ -17,10 +17,6 @@ before_script:
 - pip install -r optional_requirements.txt
 # codespell
 - "pip install codespell && git ls-files | xargs codespell --ignore-words=.codespell_ignore 2>/dev/null"
-- "cd .."
-# Miasm
-- "cd ..;"
-- "cd miasm;"
 # turn deprecation warning into RuntimeError
 - "find . -name '*.py' | xargs sed -i 's/warnings\\.warn(/raise RuntimeError(/g'"
 # install
